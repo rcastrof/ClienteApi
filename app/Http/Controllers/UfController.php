@@ -14,7 +14,8 @@ class UfController extends Controller
      */
     public function index()
     {
-        //
+        $ufs= Uf::paginate(10);
+        return view('uf.index', compact('ufs'));
     }
 
     /**
@@ -24,7 +25,7 @@ class UfController extends Controller
      */
     public function create()
     {
-        //
+        return view('uf.create');
     }
 
     /**
@@ -35,7 +36,7 @@ class UfController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

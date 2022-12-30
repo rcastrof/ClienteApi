@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Uf;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 
@@ -18,3 +19,5 @@ use Illuminate\Support\Facades\Http;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('uf',App\Http\Controllers\UfController::class)->names('uf');
