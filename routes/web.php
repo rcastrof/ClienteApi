@@ -16,5 +16,5 @@ use Illuminate\Support\Facades\Http;
 */
 
 Route::get('/', function () {
-    $response = Http::get('http://example.com');
+    return view('welcome');
 });
