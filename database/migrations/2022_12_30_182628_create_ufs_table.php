@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('unidadMedidaIndicador');
             $table->string('valorIndicador');
             $table->string('fechaIndicador');
-            $table->timestamps();
         });
     }
 
