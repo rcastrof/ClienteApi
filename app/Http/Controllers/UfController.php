@@ -14,7 +14,7 @@ class UfController extends Controller
      */
     public function index()
     {
-        $ufs= Uf::paginate(10);
+        $ufs= Uf::orderBy('id', 'desc')->paginate(10);
         return view('uf.index', compact('ufs'));
     }
 
@@ -34,9 +34,27 @@ class UfController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Uf $uf)
     {
-        
+        $uf = request()->except('_token');
+
+        $request->validate([
+            'nombreIndicador' => 'required',
+            'codigoIndicador' => 'required',
+            'unidadMedidaIndicador' => 'required',
+            'valorIndicador' => 'required',
+            'fechaIndicador' => 'required',
+        ]);
+
+        $uf = [
+            'nombreIndicador' => $request->input('nombreIndicador'),
+            'codigoIndicador' => $request->input('codigoIndicador'),
+            'unidadMedidaIndicador' => $request->input('unidadMedidaIndicador'),
+            'valorIndicador' => $request->input('valorIndicador'),
+            'fechaIndicador' => $request->input('fechaIndicador'),
+        ];
+        Uf::insert($uf);
+        return redirect()->route('uf.index',$uf);
     }
 
     /**
@@ -47,7 +65,7 @@ class UfController extends Controller
      */
     public function show(Uf $uf)
     {
-        //
+        return view("uf.show",compact('uf'));
     }
 
     /**
@@ -58,7 +76,7 @@ class UfController extends Controller
      */
     public function edit(Uf $uf)
     {
-        //
+        return view("uf.edit", compact('uf'));
     }
 
     /**
@@ -70,7 +88,16 @@ class UfController extends Controller
      */
     public function update(Request $request, Uf $uf)
     {
-        //
+        $request->validate([
+            'nombreIndicador' => 'required',
+            'codigoIndicador' => 'required',
+            'unidadMedidaIndicador' => 'required',
+            'valorIndicador' => 'required',
+            'fechaIndicador' => 'required',
+        ]);
+
+        $uf->update($request->all());
+        return redirect()->route('uf.index');
     }
 
     /**
@@ -81,6 +108,7 @@ class UfController extends Controller
      */
     public function destroy(Uf $uf)
     {
-        //
+        $uf->delete();
+        return redirect()->route('uf.index');
     }
 }

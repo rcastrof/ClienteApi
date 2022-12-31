@@ -25,18 +25,32 @@
 
         @foreach($ufs as $uf)
         <tr>
-            <td>{{$uf->nombreIndicador}}</td>
+
+
+            <td><a href="{{ route('uf.show', [$uf]) }}">{{$uf->nombreIndicador}}   </a></td>
             <td>{{$uf->codigoIndicador}}</td>
             <td>{{$uf->unidadMedidaIndicador}}</td>
             <td>{{$uf->valorIndicador}}</td>
             <td>{{$uf->fechaIndicador}}</td>
-            <td></td>
+
+            <td>
+                <a href="{{route('uf.edit',[$uf])}}" class="btn btn-waringin btn-sm mr-2"> Editar </a>
+                <form action="{{route('uf.destroy',[$uf])}}" method="POST">
+                @csrf
+                @method("DELETE")
+                <button  onclick="return confirm('Estas seguro?')" class="btn btn-danger btn-sm"> Borrar </button>
+            </form>
+            </td>
         </tr>
         @endforeach
     </tbody>
 </table>
 {{$ufs->onEachSide(1)->links()}}
 </body>
+<button><a href="{{url()->previous()}}">Volver</a></button>
+<button><a href="{{route('uf.create')}}">Crear</a></button>
+
+
 <style>
     ul.pagination li {
     display: inline;
