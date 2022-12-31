@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nombreIndicador');
             $table->string('codigoIndicador');
             $table->string('unidadMedidaIndicador');
-            $table->string('valorIndicador');
+            $table->double('valorIndicador');
             $table->string('fechaIndicador');
         });
     }
