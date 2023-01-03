@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
-        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <!-- Bootstrap CSS -->
-
-    <title>Document</title>
-</head>
-
-<body>
+@extends('layouts.app')
+@section('content')
     <h1>uf</h1>
-
     <div class="card-body">
         <table class="table table-striped table-bordered" id="order_table">
             <thead class="">
@@ -60,8 +40,6 @@
         </table>
     </div>
     {{ $ufs->onEachSide(1)->links() }}
-</body>
 <button><a href="{{ url()->previous() }}">Volver</a></button>
 <button><a href="{{ route('uf.create') }}">Crear</a></button>
-
-</html>
+@endsection
