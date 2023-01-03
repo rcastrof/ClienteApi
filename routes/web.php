@@ -23,4 +23,3 @@ Route::get('/', function () {
 
 Route::resource('uf',App\Http\Controllers\UfController::class)->names('uf');
 
-Route::get('/line-chart',[ChartController::class,'LineChart']);

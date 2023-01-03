@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Uf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UfController extends Controller
 {
@@ -15,7 +17,25 @@ class UfController extends Controller
     public function index()
     {
         $ufs= Uf::orderBy('id', 'desc')->paginate(10);
-        return view('uf.index', compact('ufs'));
+
+        $now = Carbon::now();
+        $end = $now->format('Y-m-d');
+        $start = $now->subYear()->format('Y-m-d');
+
+        $monthCounts = Uf::select(
+            DB::raw('MONTH(fechaIndicador) as mes'),
+            DB::raw('valorIndicador')
+        )
+            ->groupBy()
+            ->get()
+            ->toArray();
+        $counts = array_fill(0, 12, 0);
+
+        foreach ($monthCounts as $monthCount) {
+            $index = $monthCount['mes'] - 1;
+            $counts[$index] = $monthCount['valorIndicador'];
+        }
+        return view('uf.index', compact('ufs','counts','end', 'start'));
     }
 
     /**
