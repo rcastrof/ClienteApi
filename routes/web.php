@@ -1,9 +1,6 @@
 <?php
 
-use App\Models\Uf;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Http;
-use App\Http\Controllers\ChartController;
 
 
 /*
@@ -22,4 +19,5 @@ Route::get('/', function () {
 });
 
 Route::resource('uf',App\Http\Controllers\UfController::class)->names('uf');
+
 
